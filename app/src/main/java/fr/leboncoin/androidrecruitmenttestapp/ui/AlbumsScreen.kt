@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.adevinta.spark.components.scaffold.Scaffold
 import fr.leboncoin.androidrecruitmenttestapp.AlbumsViewModel
-import fr.leboncoin.data.network.model.AlbumDto
+import fr.leboncoin.data.response.AlbumDto
 
 @Composable
 fun AlbumsScreen(
@@ -30,7 +30,7 @@ fun AlbumsScreen(
         ) {
             items(
                 items = albums,
-                key = { album -> album.id }
+                //key = { album -> album.id }
             ) { album ->
                 AlbumItem(
                     album = album,

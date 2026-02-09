@@ -13,11 +13,11 @@ import fr.leboncoin.androidrecruitmenttestapp.utils.AnalyticsHelper
 
 class MainActivity : ComponentActivity() {
 
-    private val viewModel: AlbumsViewModel by lazy {
+    /*private val viewModel: AlbumsViewModel by lazy {
         val dependencies = (application as AppDependenciesProvider).dependencies
         val factory = AlbumsViewModel.Factory(dependencies.dataDependencies.albumsRepository)
         ViewModelProvider(this, factory)[AlbumsViewModel::class.java]
-    }
+    }*/
 
     private val analyticsHelper: AnalyticsHelper by lazy {
         val dependencies = (application as AppDependenciesProvider).dependencies
@@ -32,13 +32,13 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             SparkTheme {
-                AlbumsScreen(
+                /*AlbumsScreen(
                     viewModel = viewModel,
                     onItemSelected = {
                         analyticsHelper.trackSelection(it.id.toString())
                         startActivity(Intent(this, DetailsActivity::class.java))
                     }
-                )
+                )*/
             }
         }
     }

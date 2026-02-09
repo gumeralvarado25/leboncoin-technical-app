@@ -2,7 +2,9 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.hilt.android)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
 }
 
 android {
@@ -37,15 +39,27 @@ android {
         buildConfig = true
     }
 
-    dependencies {
-        implementation(libs.retrofit.core)
-        implementation(libs.retrofit.kotlin.serialization)
-        implementation(libs.okhttp.logging)
-
-        implementation(libs.kotlin.serialization.json)
-
-        testImplementation(libs.junit)
-        androidTestImplementation(libs.androidx.junit) // Useless dependency
-        androidTestImplementation(libs.androidx.espresso.core) // Useless dependency
+    room {
+        schemaDirectory("$projectDir/schemas")
     }
+}
+
+dependencies {
+    implementation(project(":domain"))
+
+    implementation(libs.hilt.dagger.android)
+    ksp(libs.hilt.dagger.compiler)
+
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.kotlin.serialization)
+    implementation(libs.okhttp.logging)
+
+    implementation(libs.kotlin.serialization.json)
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit) // Useless dependency
+    androidTestImplementation(libs.androidx.espresso.core) // Useless dependency
 }

@@ -27,7 +27,7 @@ import com.adevinta.spark.ExperimentalSparkApi
 import com.adevinta.spark.SparkTheme
 import com.adevinta.spark.components.card.Card
 import com.adevinta.spark.components.chips.ChipTinted
-import fr.leboncoin.data.network.model.AlbumDto
+import fr.leboncoin.data.response.AlbumDto
 
 @OptIn(ExperimentalSparkApi::class)
 @Composable
@@ -67,7 +67,7 @@ fun AlbumItem(
                     .padding(14.dp),
             ) {
                 Text(
-                    text = album.title,
+                    text = "",//album.title,
                     style = SparkTheme.typography.caption,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
