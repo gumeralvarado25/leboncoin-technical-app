@@ -37,7 +37,9 @@ abstract class AlbumDataModule {
                 context,
                 AlbumDatabase::class.java,
                 "albums.db"
-            ).build()
+            )
+                .fallbackToDestructiveMigration(true)
+                .build()
         }
 
         @Provides

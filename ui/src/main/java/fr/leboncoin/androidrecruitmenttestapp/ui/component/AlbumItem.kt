@@ -95,10 +95,12 @@ private fun AlbumItemPreview(){
     SparkTheme {
         AlbumItem(
             album = Album(
+                id = 1,
                 title = "New Album",
                 thumbnailUrl = "",
                 albumTag = "Album #1",
                 trackTag = "Track #1",
+                isFavorite = true,
                 url = "",
             ),
             onItemSelected = {},

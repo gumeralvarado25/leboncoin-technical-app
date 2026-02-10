@@ -6,7 +6,7 @@ import fr.leboncoin.androidrecruitmenttestapp.di.AppDependencies
 import fr.leboncoin.androidrecruitmenttestapp.di.AppDependenciesProvider
 
 @HiltAndroidApp
-class PhotoApp : Application(), AppDependenciesProvider {
+class AlbumApp : Application(), AppDependenciesProvider {
 
     override val dependencies: AppDependencies by lazy { AppDependencies() }
 }

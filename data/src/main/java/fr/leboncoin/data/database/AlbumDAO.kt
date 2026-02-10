@@ -14,4 +14,10 @@ interface AlbumDAO {
 
     @Query("DELETE FROM AlbumEntity")
     suspend fun clearAlbums()
+
+    @Query("UPDATE AlbumEntity SET isFavorite = :isFavorite WHERE id = :id")
+    suspend fun updateFavorite(id: Int, isFavorite: Boolean)
+
+    @Query("SELECT * FROM AlbumEntity WHERE id = :id")
+    suspend fun getAlbum(id: Int): AlbumEntity
 }

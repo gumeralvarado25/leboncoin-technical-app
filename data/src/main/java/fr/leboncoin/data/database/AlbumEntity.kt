@@ -13,4 +13,5 @@ data class AlbumEntity(
     val thumbnailUrl: String,
     val albumTag: String,
     val trackTag: String,
+    val isFavorite: Boolean,
 )

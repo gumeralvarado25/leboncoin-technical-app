@@ -18,8 +18,14 @@ class AlbumsRepositoryImpl @Inject constructor(
 
     override suspend fun getAlbums(): AlbumResult<List<Album>> {
         return try {
-            val albums = albumApiService.getAlbums()
-            albumDatabase.dao.upsertAlbums(albums.map { it.toAlbumEntity() })
+            val remoteAlbums = albumApiService.getAlbums()
+            val localAlbums = albumDatabase.dao.getAlbums()
+            albumDatabase.dao.upsertAlbums(
+                remoteAlbums.map {
+                    val localAlbum = localAlbums.find { localAlbum -> localAlbum.id == it.id }
+                    it.toAlbumEntity(localAlbum?.isFavorite ?: false)
+                }
+            )
             AlbumResult.Success(getAlbumsFromDatabase())
         } catch (throwable: Throwable) {
             if (throwable is UnknownHostException)
@@ -27,6 +33,19 @@ class AlbumsRepositoryImpl @Inject constructor(
             else
                 AlbumResult.Failure(AlbumError.Unknown)
         }
+    }
+
+    override suspend fun getAlbum(id: Int): AlbumResult<Album> {
+        return try {
+            val album = albumDatabase.dao.getAlbum(id).toAlbum()
+            AlbumResult.Success(album)
+        } catch (throwable: Throwable) {
+            AlbumResult.Failure(AlbumError.Unknown)
+        }
+    }
+
+    override suspend fun updateFavorite(albumId: Int, isFavorite: Boolean) {
+        albumDatabase.dao.updateFavorite(albumId, isFavorite)
     }
 
     private suspend fun getAlbumsFromDatabase(): List<Album> =

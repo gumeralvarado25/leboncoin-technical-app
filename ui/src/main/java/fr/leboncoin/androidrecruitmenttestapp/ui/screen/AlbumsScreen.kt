@@ -1,7 +1,10 @@
 package fr.leboncoin.androidrecruitmenttestapp.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
@@ -53,7 +56,9 @@ private fun AlbumsListUI(
     modifier: Modifier = Modifier,
 ){
     LazyColumn(
-        modifier = modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+        modifier = modifier
+            .windowInsetsPadding(WindowInsets.statusBars)
+            .padding(horizontal = 16.dp, vertical = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
@@ -97,11 +102,11 @@ fun AlbumsScreenPreview(){
         state = AlbumsScreenState(
             isLoading = false,
             albums = listOf(
-                Album(title = "title", thumbnailUrl = "thumbnailUrl", albumTag = "Album #1", trackTag = "Track #1", url = ""),
-                Album(title = "title", thumbnailUrl = "thumbnailUrl", albumTag = "Album #1", trackTag = "Track #1", url = ""),
-                Album(title = "title", thumbnailUrl = "thumbnailUrl", albumTag = "Album #1", trackTag = "Track #1", url = ""),
-                Album(title = "title", thumbnailUrl = "thumbnailUrl", albumTag = "Album #1", trackTag = "Track #1", url = ""),
-                Album(title = "title", thumbnailUrl = "thumbnailUrl", albumTag = "Album #1", trackTag = "Track #1", url = ""),
+                Album(title = "title", thumbnailUrl = "thumbnailUrl", albumTag = "Album #1", trackTag = "Track #1", url = "", id = 1, isFavorite = true),
+                Album(title = "title", thumbnailUrl = "thumbnailUrl", albumTag = "Album #1", trackTag = "Track #1", url = "", id = 1, isFavorite = true),
+                Album(title = "title", thumbnailUrl = "thumbnailUrl", albumTag = "Album #1", trackTag = "Track #1", url = "", id = 1, isFavorite = true),
+                Album(title = "title", thumbnailUrl = "thumbnailUrl", albumTag = "Album #1", trackTag = "Track #1", url = "", id = 1, isFavorite = true),
+                Album(title = "title", thumbnailUrl = "thumbnailUrl", albumTag = "Album #1", trackTag = "Track #1", url = "", id = 1, isFavorite = true),
             )
         ),
         onItemSelected = {},
