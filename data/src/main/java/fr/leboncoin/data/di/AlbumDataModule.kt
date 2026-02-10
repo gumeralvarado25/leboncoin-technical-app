@@ -9,6 +9,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import fr.leboncoin.androidrecruitmenttestapp.domain.repository.AlbumsRepository
 import fr.leboncoin.data.BuildConfig
 import fr.leboncoin.data.database.AlbumDatabase
 import fr.leboncoin.data.network.api.AlbumApiService
@@ -26,7 +27,7 @@ abstract class AlbumDataModule {
 
     @Binds
     @Singleton
-    abstract fun bindAlbumRepository(impl: AlbumsRepositoryImpl): AlbumsRepositoryImpl
+    abstract fun bindAlbumRepository(impl: AlbumsRepositoryImpl): AlbumsRepository
 
     companion object {
         @Provides

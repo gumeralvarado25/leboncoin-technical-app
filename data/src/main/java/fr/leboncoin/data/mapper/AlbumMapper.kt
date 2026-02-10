@@ -9,9 +9,9 @@ fun AlbumDto.toAlbumEntity() = AlbumEntity(
     id = this.id ?: 0,
     title = this.title ?: "",
     url = this.url ?: "",
-    thumbnailUrl = getThumbnailUrl(this.thumbnailUrl) ?: "",
-    albumTag = "Album #1",
-    trackTag = "Track ${this.id}",
+    thumbnailUrl = this.thumbnailUrl ?: "",
+    albumTag = "Album #${this.albumId}",
+    trackTag = "Track #${this.id}",
 )
 
 fun AlbumEntity.toAlbum() = Album(
@@ -19,9 +19,5 @@ fun AlbumEntity.toAlbum() = Album(
     thumbnailUrl = this.thumbnailUrl,
     albumTag = this.albumTag,
     trackTag = this.trackTag,
+    url = this.url,
 )
-
-private fun getThumbnailUrl(url: String?): String? {
-    val index = url?.lastIndexOf("/")
-    return index?.let { "https://place-hold.it/600".plus(url.substring(index, url.length)) }
-}

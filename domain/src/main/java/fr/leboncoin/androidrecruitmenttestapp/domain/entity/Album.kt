@@ -5,4 +5,5 @@ data class Album(
     val thumbnailUrl: String,
     val albumTag: String,
     val trackTag: String,
+    val url: String,
 )

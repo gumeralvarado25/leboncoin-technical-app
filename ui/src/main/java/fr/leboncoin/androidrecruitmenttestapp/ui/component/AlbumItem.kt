@@ -1,6 +1,5 @@
-package fr.leboncoin.androidrecruitmenttestapp.ui
+package fr.leboncoin.androidrecruitmenttestapp.ui.component
 
-import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,23 +17,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.network.NetworkHeaders
 import coil3.network.httpHeaders
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.adevinta.spark.ExperimentalSparkApi
 import com.adevinta.spark.SparkTheme
-import com.adevinta.spark.components.card.Card
 import com.adevinta.spark.components.chips.ChipTinted
-import fr.leboncoin.data.response.AlbumDto
+import fr.leboncoin.androidrecruitmenttestapp.domain.entity.Album
 
-@OptIn(ExperimentalSparkApi::class)
 @Composable
 fun AlbumItem(
-    album: AlbumDto,
-    onItemSelected : (AlbumDto) -> Unit,
+    album: Album,
+    onItemSelected : (Album) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -67,7 +65,7 @@ fun AlbumItem(
                     .padding(14.dp),
             ) {
                 Text(
-                    text = "",//album.title,
+                    text = album.title,
                     style = SparkTheme.typography.caption,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
@@ -80,13 +78,30 @@ fun AlbumItem(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     ChipTinted(
-                        text = "Album #${album.albumId}"
+                        text = album.albumTag,
                     )
                     ChipTinted(
-                        text = "Track #${album.id}"
+                        text = album.trackTag,
                     )
                 }
             }
         }
+    }
+}
+
+@Preview
+@Composable
+private fun AlbumItemPreview(){
+    SparkTheme {
+        AlbumItem(
+            album = Album(
+                title = "New Album",
+                thumbnailUrl = "",
+                albumTag = "Album #1",
+                trackTag = "Track #1",
+                url = "",
+            ),
+            onItemSelected = {},
+        )
     }
 }

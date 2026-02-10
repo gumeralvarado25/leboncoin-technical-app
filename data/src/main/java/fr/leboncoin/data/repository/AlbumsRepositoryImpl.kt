@@ -9,8 +9,9 @@ import fr.leboncoin.data.mapper.toAlbum
 import fr.leboncoin.data.mapper.toAlbumEntity
 import fr.leboncoin.data.network.api.AlbumApiService
 import java.net.UnknownHostException
+import javax.inject.Inject
 
-class AlbumsRepositoryImpl(
+class AlbumsRepositoryImpl @Inject constructor(
     private val albumApiService: AlbumApiService,
     private val albumDatabase: AlbumDatabase,
 ): AlbumsRepository {
