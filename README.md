@@ -69,7 +69,7 @@ The project is divided into the following modules:
 
 ### Networking
 
--   **`com.squareup.retrofit2:retrofit`**: Core HTTP client.
+-   **`com.squareup.retrofit2:retrofit`**: For network requests.
 -   **`com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter`**: For JSON serialization.
 
 ### Serialization
@@ -101,10 +101,3 @@ The project is divided into the following modules:
 -   **`com.google.android.material:material`**: Material Design components.
 -   **`io.coil-kt:coil-compose`**: For image loading.
 -   **`com.adevinta.spark:spark`**: For the app theme and components.
-
-
-## Getting Started
-
-1.  Clone the repository: `git clone <repository-url>`
-2.  Open the project in Android Studio.
-3.  Build and run the project.
