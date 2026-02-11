@@ -55,12 +55,19 @@ dependencies {
     implementation(libs.coil.network.okhttp)
     implementation(platform(libs.spark.bom))
     implementation(libs.spark)
+    implementation(libs.androidx.core.ktx)
 
     implementation(libs.hilt.dagger.android)
     debugImplementation(libs.ui.tooling)
     ksp(libs.hilt.dagger.compiler)
 
-    implementation(libs.androidx.core.ktx)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.turbine)
+    androidTestImplementation(project(":domain"))
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -8,6 +8,7 @@ import fr.leboncoin.androidrecruitmenttestapp.domain.usecase.GetAlbumUseCase
 import fr.leboncoin.androidrecruitmenttestapp.domain.usecase.UpdateFavoriteAlbumUseCase
 import fr.leboncoin.androidrecruitmenttestapp.domain.utils.AlbumResult
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,7 +19,7 @@ class AlbumDetailViewModel @Inject constructor(
 ): ViewModel() {
 
     private val _state = MutableStateFlow(AlbumDetailScreenState())
-    val state = _state
+    val state: StateFlow<AlbumDetailScreenState> = _state
 
     fun init(albumId: Int) {
         viewModelScope.launch {
@@ -28,7 +29,7 @@ class AlbumDetailViewModel @Inject constructor(
                     _state.value = _state.value.copy(error = album.error.toString(), album = null, isLoading = false)
                 }
                 is AlbumResult.Success -> {
-                    _state.value = _state.value.copy(album = album.data, isLoading = false, error = null)
+                    _state.value = _state.value.copy(album = album.data, isLoading = false, error = null, isFavorite = album.data.isFavorite)
                 }
             }
 
@@ -38,7 +39,7 @@ class AlbumDetailViewModel @Inject constructor(
     fun updateFavorite(albumId: Int, isFavorite: Boolean) {
         viewModelScope.launch {
             updateFavoriteAlbumUseCase(albumId, isFavorite)
-            init(albumId)
+            _state.value = _state.value.copy(isFavorite = isFavorite)
         }
     }
 }
@@ -47,4 +48,5 @@ data class AlbumDetailScreenState(
     val isLoading: Boolean = true,
     val album: Album? = null,
     val error: String? = null,
+    val isFavorite: Boolean = false,
 )

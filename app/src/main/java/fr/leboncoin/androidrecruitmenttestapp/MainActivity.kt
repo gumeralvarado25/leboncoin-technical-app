@@ -1,6 +1,5 @@
 package fr.leboncoin.androidrecruitmenttestapp
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,7 +8,6 @@ import com.adevinta.spark.SparkTheme
 import dagger.hilt.android.AndroidEntryPoint
 import fr.leboncoin.androidrecruitmenttestapp.di.AppDependenciesProvider
 import fr.leboncoin.androidrecruitmenttestapp.ui.navigation.MainNavHost
-import fr.leboncoin.androidrecruitmenttestapp.ui.screen.AlbumsScreen
 import fr.leboncoin.androidrecruitmenttestapp.utils.AnalyticsHelper
 
 @AndroidEntryPoint

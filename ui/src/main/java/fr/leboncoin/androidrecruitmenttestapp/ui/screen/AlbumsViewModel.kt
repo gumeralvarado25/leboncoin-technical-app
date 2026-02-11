@@ -7,6 +7,7 @@ import fr.leboncoin.androidrecruitmenttestapp.domain.entity.Album
 import fr.leboncoin.androidrecruitmenttestapp.domain.usecase.GetAlbumsUseCase
 import fr.leboncoin.androidrecruitmenttestapp.domain.utils.AlbumResult
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,7 +16,7 @@ class AlbumsViewModel @Inject constructor(
     private val getAlbumsUseCase: GetAlbumsUseCase,
 ): ViewModel() {
     private val _state = MutableStateFlow(AlbumsScreenState())
-    val state = _state
+    val state: StateFlow<AlbumsScreenState> = _state
 
     init {
         viewModelScope.launch {

@@ -61,6 +61,7 @@ fun AlbumDetailScreen(
                 UIContent(
                     album = it,
                     onBackClick = onBackClick,
+                    isFavorite = state.isFavorite,
                     onFavoriteClick = {
                         viewModel.updateFavorite(albumId = it.id, isFavorite = !it.isFavorite)
                     }
@@ -73,6 +74,7 @@ fun AlbumDetailScreen(
 @Composable
 private fun UIContent(
     album: Album,
+    isFavorite: Boolean,
     onBackClick: () -> Unit,
     onFavoriteClick: () -> Unit,
 ){
@@ -145,7 +147,7 @@ private fun UIContent(
             ){
                 Icon(
                     painter = rememberVectorPainter(
-                        image = if (album.isFavorite)
+                        image = if (isFavorite)
                             Icons.Outlined.Favorite
                         else
                             Icons.Outlined.FavoriteBorder,

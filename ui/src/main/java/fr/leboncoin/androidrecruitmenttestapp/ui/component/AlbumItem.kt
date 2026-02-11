@@ -38,7 +38,7 @@ fun AlbumItem(
         modifier = modifier
             .fillMaxWidth()
             .height(120.dp)
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 8.dp),
         onClick = { onItemSelected(album) },
     ) {
         Row {
